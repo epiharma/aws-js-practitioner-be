@@ -1,3 +1,1 @@
-# aws-js-practitioner-be
-
-init
+# aws-cc-be
