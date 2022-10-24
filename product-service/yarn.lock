@@ -882,12 +882,31 @@
   resolved "https://registry.yarnpkg.com/@middy/core/-/core-2.5.7.tgz#a1b3eff68881ff66b14b5051255791f7cbd3b471"
   integrity sha512-KX5Ud0SP+pol6PGkYtMCH4goHobs1XJo3OvEUwdiZUIjZgo56Q08nLu5N7Bs6P+FwGTQHA+hlQ3I5SZbfpO/jg==
 
+"@middy/http-cors@^3.6.2":
+  version "3.6.2"
+  resolved "https://registry.yarnpkg.com/@middy/http-cors/-/http-cors-3.6.2.tgz#b1f3bc97166f2971589e23d698d61b4fb858caa8"
+  integrity sha512-ULsa5TKVsW31s14ctQYTB1YkoMIAGyKc0fhScft6wujL6FCg4U4OxWRVCeviCAegRgyWtYI/fxj1aa4jBgdT4g==
+  dependencies:
+    "@middy/util" "3.6.2"
+
+"@middy/http-error-handler@^3.6.2":
+  version "3.6.2"
+  resolved "https://registry.yarnpkg.com/@middy/http-error-handler/-/http-error-handler-3.6.2.tgz#28559da5a7c45c00666d4ce7af059bf808b1d38b"
+  integrity sha512-2DeXNDdd56C2a7bsEqnvNZKI4un0FoIgXPpNvwyIfABDKTXwoQZptjlAoU+b4hv/T0kzSttdCkPowYobTKN61w==
+  dependencies:
+    "@middy/util" "3.6.2"
+
 "@middy/http-json-body-parser@^2.5.3":
   version "2.5.7"
   resolved "https://registry.yarnpkg.com/@middy/http-json-body-parser/-/http-json-body-parser-2.5.7.tgz#966dccc77ec5a0a163efe731b7c7007adf821513"
   integrity sha512-6xysTWlK8s8QTVyQE9MfXR6fIY9h26uyiD1rM0mmYzGhLqWmamHgJvXzpBVXyRwOej451zSfjdSgKU66nxZmrw==
   dependencies:
     "@middy/util" "^2.5.7"
+
+"@middy/util@3.6.2":
+  version "3.6.2"
+  resolved "https://registry.yarnpkg.com/@middy/util/-/util-3.6.2.tgz#2d49a4f9b6ab7fe3635b1123cfcfe35892743e5c"
+  integrity sha512-zjyjF5BdSNnDlZbTvfQwwuUIs3H5PpN/R3wOAipXhaGD/SjpIUBcJJPLUQHySeHoZym1FC3MJYczJDbYQWKWdg==
 
 "@middy/util@^2.5.7":
   version "2.5.7"
@@ -1180,6 +1199,11 @@
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/@types/http-cache-semantics/-/http-cache-semantics-4.0.1.tgz#0ea7b61496902b95890dc4c3a116b60cb8dae812"
   integrity sha512-SZs7ekbP8CN0txVG2xVRH6EgKmEm31BOxA07vkFaETzZz1xh+cbt8BcI0slpymvwhx5dlFnQG2rTlPVQn+iRPQ==
+
+"@types/http-errors@^1.8.2":
+  version "1.8.2"
+  resolved "https://registry.yarnpkg.com/@types/http-errors/-/http-errors-1.8.2.tgz#7315b4c4c54f82d13fa61c228ec5c2ea5cc9e0e1"
+  integrity sha512-EqX+YQxINb+MeXaIqYDASb6U6FCHbWjkj4a1CKDBks3d/QiB2+PqBLyO72vLDgAO1wUI4O+9gweRcQK11bTL/w==
 
 "@types/istanbul-lib-coverage@*", "@types/istanbul-lib-coverage@^2.0.0", "@types/istanbul-lib-coverage@^2.0.1":
   version "2.0.4"
@@ -6875,6 +6899,11 @@ uuid@^8.3.2:
   version "8.3.2"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-8.3.2.tgz#80d5b5ced271bb9af6c445f21a1a04c606cefbe2"
   integrity sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==
+
+uuid@^9.0.0:
+  version "9.0.0"
+  resolved "https://registry.yarnpkg.com/uuid/-/uuid-9.0.0.tgz#592f550650024a38ceb0c562f2f6aa435761efb5"
+  integrity sha512-MXcSTerfPa4uqyzStbRoTgt5XIe3x5+42+q1sDuy3R5MDk66URdLMOZe5aPX/SQd+kuYAh0FdP/pO28IkQyTeg==
 
 v8-compile-cache-lib@^3.0.1:
   version "3.0.1"

@@ -1,17 +1,27 @@
-import type { ValidatedEventAPIGatewayProxyEvent } from '@libs/api-gateway';
-import { formatJSONResponse } from '@libs/api-gateway';
-import { middyfy } from '@libs/lambda';
-import {products} from "../../data.mock";
+import {formatErrorResponse, formatJSONResponse} from "@libs/api-gateway";
+import {middyfy} from "@libs/lambda";
+import {errorMessage, loggers} from "@libs/logger";
+import {APIGatewayEvent} from "aws-lambda";
+import ProductService from "@services/product.service";
 
-export const getProductById: ValidatedEventAPIGatewayProxyEvent<any> = async (event) => {
-  const id = (event.pathParameters.id).toString();
+const {LOG, ERROR} = loggers("getProductById");
 
-  const product = products.find(product => product.id === id);
-  if (!product) return { statusCode: 404, body: null }
+export const getProductById = async (event: APIGatewayEvent) => {
+  try {
+    const id = String(event.pathParameters.id);
 
-  return formatJSONResponse({
-    product
-  });
+    LOG(`Looking for product with ID ${id}`);
+
+    const product = await ProductService.getProductById(id);
+
+    return formatJSONResponse({
+      product,
+    });
+  } catch (err) {
+    const message = errorMessage(err);
+    ERROR(message);
+    return formatErrorResponse(500, message);
+  }
 };
 
 export const main = middyfy(getProductById);
