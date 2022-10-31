@@ -1,0 +1,52 @@
+openapi: 3.0.0
+info:
+  title: 'Serverless TypeScript Boilerplate'
+  description: 'Change this description.'
+  version: 1.0.0
+
+paths:
+  /products:
+    get:
+      summary: 'Get products'
+      description: 'Returns list of all products'
+      responses:
+        200:
+          description: 'Successfully request'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+        400:
+          description: 'Client provided invalid data'
+        401:
+          description: 'Client provided either nonexistent or wrong credentials'
+        500:
+          description: 'Internal Server Error'
+    post:
+      summary: 'Create product'
+      description: 'Creates a new product'
+      responses:
+        200:
+          description: 'Successfully request'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  product:
+                    $ref: '#/components/schemas/Product'
+        400:
+          description: 'Client provided invalid data'
+        401:
+          description: 'Client provided either nonexistent or wrong credentials'
+        500:
+          description: 'Internal Server Error'
+
+  /products/{id}:
+    $ref: './functions/get-product-by-id.yml#/paths'
+
+components:
+  schemas:
+    $ref: './models/product.yml'
