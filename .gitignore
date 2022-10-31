@@ -40,3 +40,6 @@ Thumbs.db
 
 # serverless
 services/product-service/.serverless/
+services/product-service/.esbuild/
+services/import-service/.serverless/
+services/import-service/.esbuild/

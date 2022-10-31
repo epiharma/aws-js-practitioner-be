@@ -1,4 +1,4 @@
-export const formatJSONResponse = (response: Record<string, unknown> | any) => {
+export const formatJSONResponse = (response) => {
   return {
     statusCode: 200,
     body: JSON.stringify(response),
