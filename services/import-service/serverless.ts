@@ -1,8 +1,9 @@
 import type {AWS} from '@serverless/typescript';
 import * as functions from './src/functions';
+import {s3BucketConfig} from '@environments/s3-bucket.config';
 
 const serverlessConfiguration: AWS = {
-  service: 'product-services',
+  service: 'import-services',
   frameworkVersion: '3',
   plugins: ['serverless-esbuild', 'serverless-offline'],
   provider: {
@@ -21,27 +22,22 @@ const serverlessConfiguration: AWS = {
         statements: [
           {
             Effect: 'Allow',
-            Action: [
-              'dynamodb:Query',
-              'dynamodb:Scan',
-              'dynamodb:GetItem',
-              'dynamodb:PutItem',
-              'dynamodb:UpdateItem',
-              'dynamodb:DeleteItem',
-            ],
-            Resource: 'arn:aws:dynamodb:us-east-1:*:table/products',
+            Action: ['s3:ListBucket'],
+            Resource: [`arn:aws:s3:::${s3BucketConfig.BUCKET_NAME}`],
+          },
+          {
+            Effect: 'Allow',
+            Action: ['s3:*'],
+            Resource: [`arn:aws:s3:::${s3BucketConfig.BUCKET_NAME}/*`],
           },
           {
             Effect: 'Allow',
             Action: [
-              'dynamodb:Query',
-              'dynamodb:Scan',
-              'dynamodb:GetItem',
-              'dynamodb:PutItem',
-              'dynamodb:UpdateItem',
-              'dynamodb:DeleteItem',
+              'logs:CreateLogGroup',
+              'logs:CreateLogStream',
+              'logs:PutLogEvents',
             ],
-            Resource: 'arn:aws:dynamodb:us-east-1:*:table/stocks',
+            Resource: 'arn:aws:logs:*:*:log-group:/aws/lambda/*:*:*',
           },
         ],
       },

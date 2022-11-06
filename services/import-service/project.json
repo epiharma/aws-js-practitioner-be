@@ -1,60 +1,63 @@
 {
-  "name": "import-service",
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "services/import-service/src",
+  "root": "services/import-service",
   "projectType": "application",
+  "sourceRoot": "services/import-service/src",
   "targets": {
     "build": {
-      "executor": "@nrwl/webpack:webpack",
-      "outputs": ["{options.outputPath}"],
+      "executor": "nx:run-commands",
       "options": {
-        "target": "node",
-        "compiler": "tsc",
-        "outputPath": "dist/services/import-service",
-        "main": "services/import-service/src/main.ts",
-        "tsConfig": "services/import-service/tsconfig.app.json",
-        "assets": ["services/import-service/src/assets"]
-      },
-      "configurations": {
-        "production": {
-          "optimization": true,
-          "extractLicenses": true,
-          "inspect": false,
-          "fileReplacements": [
-            {
-              "replace": "services/import-service/src/environments/environment.ts",
-              "with": "services/import-service/src/environments/environment.prod.ts"
-            }
-          ]
-        }
+        "cwd": "services/import-service",
+        "color": true,
+        "command": "sls package"
       }
     },
     "serve": {
-      "executor": "@nrwl/js:node",
+      "executor": "nx:run-commands",
       "options": {
-        "buildTarget": "import-service:build"
+        "cwd": "services/import-service",
+        "color": true,
+        "command": "sls offline start"
+      }
+    },
+    "deploy": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "services/import-service",
+        "color": true,
+        "command": "sls deploy --verbose"
       },
-      "configurations": {
-        "production": {
-          "buildTarget": "import-service:build:production"
+      "dependsOn": [
+        {
+          "target": "deploy",
+          "projects": "dependencies"
         }
+      ]
+    },
+    "remove": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "services/import-service",
+        "color": true,
+        "command": "sls remove"
       }
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": ["services/import-service/**/*.ts"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "outputs": ["coverage/services/import-service"],
       "options": {
-        "jestConfig": "services/import-service/jest.config.ts",
+        "jestConfig": "services/import-service/jest.config.js",
         "passWithNoTests": true
       }
+    },
+    "docs": {
+      "executor": "nx:run-commands"
     }
   },
-  "tags": []
+  "tags": ["service"]
 }

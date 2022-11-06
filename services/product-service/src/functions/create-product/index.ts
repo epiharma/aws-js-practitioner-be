@@ -1,4 +1,4 @@
-import { handlerPath } from "@libs/http/handler-resolver";
+import {handlerPath} from '@libs/http/handler-resolver';
 
 export default {
   handler: `${handlerPath(__dirname)}/handler.main`,
@@ -12,10 +12,10 @@ export default {
             'application/json': {
               type: 'object',
               properties: {
-                count: { type: 'number' },
-                description: { type: 'string' },
-                price: { type: 'number' },
-                title: { type: 'string' },
+                count: {type: 'number'},
+                description: {type: 'string'},
+                price: {type: 'number'},
+                title: {type: 'string'},
               },
               required: ['count', 'description', 'price', 'title'],
             },

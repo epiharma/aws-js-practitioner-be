@@ -6,7 +6,14 @@ export default {
     {
       http: {
         method: 'get',
-        path: 'products',
+        path: 'import',
+        request: {
+          parameters: {
+            querystrings: {
+              name: true,
+            },
+          },
+        },
       },
     },
   ],

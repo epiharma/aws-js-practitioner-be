@@ -5,7 +5,12 @@
   "overrides": [
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
-      "rules": {}
+      "extends": ["google"],
+      "rules": {
+        "semi": "error",
+        "quotes": ["error", "single", { "avoidEscape": true, "allowTemplateLiterals": true }],
+        "require-jsdoc": ["off"]
+      }
     },
     {
       "files": ["*.ts", "*.tsx"],

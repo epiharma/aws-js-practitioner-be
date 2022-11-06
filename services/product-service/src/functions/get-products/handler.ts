@@ -1,22 +1,22 @@
-import { errorMessage, loggers } from '@libs/http/logger';
+import {errorMessage, Logger} from '@libs/http/logger';
 import ProductService from '../../services/product.service';
 import {
   formatErrorResponse,
   formatJSONResponse,
 } from '@libs/http/api-gateway';
-import { middyfy } from '@libs/http/lambda';
+import {middyfy} from '@libs/http/lambda';
 
-const { LOG, ERROR } = loggers('getProducts');
+const logger = new Logger('getProducts');
 
 export const getProducts = async () => {
   try {
-    LOG(`Getting all products`);
+    logger.log('Getting all products');
     const products = await ProductService.getProducts();
 
     return formatJSONResponse(products);
   } catch (err) {
     const message = errorMessage(err);
-    ERROR(message);
+    logger.error(message);
     return formatErrorResponse(500, message);
   }
 };

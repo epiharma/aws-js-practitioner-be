@@ -1,29 +1,29 @@
-import { Product } from '../models/product';
-import { DynamoDbTableNames } from '../../../../environments/dynamo-db-table-names';
-import DB from '../libs/db';
-import { v4 as uuid } from 'uuid';
+import {Product} from '../models/product';
+import DB from '@libs/http/db';
+import {v4 as uuid} from 'uuid';
+import {dynamoDbConfig} from '@environments/dynamo-db.config';
 
 export default class ProductService {
   static async getProductById(id: string): Promise<Product> {
     const product = (
-      await DB.query(DynamoDbTableNames.Products, {
+      await DB.query(dynamoDbConfig.PRODUCT_TABLE_NAME, {
         KeyConditionExpression: `id = :id`,
-        ExpressionAttributeValues: { [`:id`]: id },
+        ExpressionAttributeValues: {[`:id`]: id},
       })
     )?.Items?.[0];
     const productStock = (
-      await DB.query(DynamoDbTableNames.Stocks, {
+      await DB.query(dynamoDbConfig.STOCK_TABLE_NAME, {
         KeyConditionExpression: `product_id = :id`,
-        ExpressionAttributeValues: { [`:id`]: id },
+        ExpressionAttributeValues: {[`:id`]: id},
       })
     )?.Items?.[0];
 
-    return { ...product, count: productStock.count };
+    return {...product, count: productStock.count};
   }
 
   static async getProducts(): Promise<Product[]> {
-    const products = await DB.scan(DynamoDbTableNames.Products);
-    const stocks = await DB.scan(DynamoDbTableNames.Stocks);
+    const products = await DB.scan(dynamoDbConfig.PRODUCT_TABLE_NAME);
+    const stocks = await DB.scan(dynamoDbConfig.STOCK_TABLE_NAME);
 
     return products.map((product, index) => ({
       ...product,
@@ -33,11 +33,11 @@ export default class ProductService {
 
   static async createProduct(payload: Partial<Product>): Promise<Product> {
     const id = uuid();
-    const product = { id, ...payload } as Product;
-    const productStock = { product_id: id, count: product.count };
+    const product = {id, ...payload} as Product;
+    const productStock = {product_id: id, count: product.count};
 
-    await DB.put(DynamoDbTableNames.Products, product);
-    await DB.put(DynamoDbTableNames.Stocks, productStock);
+    await DB.put(dynamoDbConfig.PRODUCT_TABLE_NAME, product);
+    await DB.put(dynamoDbConfig.STOCK_TABLE_NAME, productStock);
 
     return product;
   }
