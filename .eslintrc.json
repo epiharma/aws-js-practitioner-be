@@ -9,7 +9,8 @@
       "rules": {
         "semi": "error",
         "quotes": ["error", "single", { "avoidEscape": true, "allowTemplateLiterals": true }],
-        "require-jsdoc": ["off"]
+        "require-jsdoc": ["off"],
+        "linebreak-style": "off"
       }
     },
     {

@@ -13,7 +13,7 @@ export default class ImportService {
     });
 
     return await getSignedUrl(s3Client, importFile, {
-      expiresIn: s3BucketConfig.SIGNATURE_LIFESPAN,
+      expiresIn: +s3BucketConfig.SIGNATURE_LIFESPAN,
     });
   }
 

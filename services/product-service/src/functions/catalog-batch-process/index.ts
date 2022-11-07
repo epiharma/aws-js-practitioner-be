@@ -4,9 +4,11 @@ export default {
   handler: `${handlerPath(__dirname)}/handler.main`,
   events: [
     {
-      http: {
-        method: 'get',
-        path: 'products',
+      sqs: {
+        batchSize: 5,
+        arn: {
+          'Fn::GetAtt': ['SQSQueue', 'Arn'],
+        },
       },
     },
   ],

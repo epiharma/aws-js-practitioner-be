@@ -1,6 +1,7 @@
 import type {AWS} from '@serverless/typescript';
 import * as functions from './src/functions';
-import {s3BucketConfig} from '@environments/s3-bucket.config';
+import {s3BucketConfig} from '../../environments/s3-bucket.config';
+import {sqsConfig} from '../../environments/sqs.config';
 
 const serverlessConfiguration: AWS = {
   service: 'import-services',
@@ -38,6 +39,11 @@ const serverlessConfiguration: AWS = {
               'logs:PutLogEvents',
             ],
             Resource: 'arn:aws:logs:*:*:log-group:/aws/lambda/*:*:*',
+          },
+          {
+            Effect: 'Allow',
+            Action: 'sqs:SendMessage',
+            Resource: {'Fn::Sub': sqsConfig.QUEUE_ARN},
           },
         ],
       },
