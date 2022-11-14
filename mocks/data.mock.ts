@@ -1,4 +1,4 @@
-import {Product} from '../models/product';
+import {Product} from '../services/product-service/src/models/product';
 
 export const products: Product[] = [
   {

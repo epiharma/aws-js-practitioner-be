@@ -1,7 +1,7 @@
 import {Product} from '../models/product';
 import DB from '@libs/http/db';
 import {v4 as uuid} from 'uuid';
-import {dynamoDbConfig} from '@environments/dynamo-db.config';
+import {dynamoDbConfig} from '../../../../configs/dynamo-db.config';
 
 export default class ProductService {
   static async getProductById(id: string): Promise<Product> {

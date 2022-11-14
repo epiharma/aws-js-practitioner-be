@@ -6,7 +6,7 @@ import {
 import {middyfy} from '@libs/http/lambda';
 
 import {SQSEvent} from 'aws-lambda';
-import {snsConfig} from '@environments/sqs.config';
+import {snsConfig} from '../../../../../configs/sqs.config';
 import {sns} from '@libs/http/sqs';
 
 const logger = new Logger('catalogBatchProcess');

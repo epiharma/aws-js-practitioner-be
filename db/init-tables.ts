@@ -1,7 +1,7 @@
 import * as AWS from 'aws-sdk';
-import { DynamoDbTableNames } from '../environments/dynamo-db-table-names';
+import { DynamoDbTableNames } from '../configs/dynamo-db-table-names';
 import { Product } from '../services/product-service/src/models/product';
-import { products } from '../services/product-service/src/mocks/data.mock';
+import { products } from '../mocks/data.mock';
 
 const db = new AWS.DynamoDB();
 

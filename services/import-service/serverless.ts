@@ -1,7 +1,7 @@
 import type {AWS} from '@serverless/typescript';
 import * as functions from './src/functions';
-import {s3BucketConfig} from '../../environments/s3-bucket.config';
-import {sqsConfig} from '../../environments/sqs.config';
+import {s3BucketConfig} from '../../configs/s3-bucket.config';
+import {sqsConfig} from '../../configs/sqs.config';
 
 const serverlessConfiguration: AWS = {
   service: 'import-services',

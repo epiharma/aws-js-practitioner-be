@@ -1,5 +1,5 @@
 import * as AWS from 'aws-sdk';
-import {dynamoDbConfig} from '@environments/dynamo-db.config';
+import {dynamoDbConfig} from '@configs/dynamo-db.config';
 
 const dynamo = new AWS.DynamoDB.DocumentClient({
   region: dynamoDbConfig.REGION,

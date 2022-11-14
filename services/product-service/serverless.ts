@@ -1,7 +1,7 @@
 import type {AWS} from '@serverless/typescript';
 import * as functions from './src/functions';
-import {snsConfig, sqsConfig} from '../../environments/sqs.config';
-import {dynamoDbConfig} from '../../environments/dynamo-db.config';
+import {snsConfig, sqsConfig} from '../../configs/sqs.config';
+import {dynamoDbConfig} from '../../configs/dynamo-db.config';
 
 const serverlessConfiguration: AWS = {
   service: 'product-services',
