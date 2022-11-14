@@ -1,4 +1,4 @@
-import {handlerPath} from '@libs/http/handler-resolver';
+import {handlerPath} from '../../../../../libs/http/src/lib/handler-resolver';
 
 export default {
   handler: `${handlerPath(__dirname)}/handler.main`,

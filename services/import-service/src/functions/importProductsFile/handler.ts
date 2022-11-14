@@ -18,12 +18,14 @@ export const importProductsFile = async (
     if (!filename) {
       const message = 'Missing name query parameter';
       logger.error(message);
+
       return formatErrorResponse(400, message);
     }
 
     logger.log('Creating signed url');
     const signedUrl = await ImportService.getSignedUrl(filename);
     logger.log(`Created signed url: ${signedUrl}`);
+
     return formatJSONResponse(signedUrl);
   } catch (e) {
     const message = errorMessage(e);

@@ -16,6 +16,8 @@ export const getProductById = async (event: APIGatewayEvent) => {
     logger.log(`Looking for product with ID ${id}`);
     const product = await ProductService.getProductById(id);
 
+    if (!product) return formatErrorResponse(404, `Product not found`);
+
     return formatJSONResponse({
       product,
     });
