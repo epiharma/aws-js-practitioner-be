@@ -3,8 +3,8 @@ import {errorMessage, Logger} from '@libs/http/logger';
 import {S3} from '@libs/http/s3';
 import ImportService from '../../services/import.service';
 import {sqs} from '@libs/http/sqs';
-import {s3BucketConfig} from '@environments/s3-bucket.config';
-import {sqsConfig} from '@environments/sqs.config';
+import {s3BucketConfig} from '../../../../../configs/s3-bucket.config';
+import {sqsConfig} from '../../../../../configs/sqs.config';
 
 const logger = new Logger('importFileParser');
 
